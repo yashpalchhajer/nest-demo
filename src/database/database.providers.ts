@@ -5,6 +5,6 @@ export const databaseProviders = [{
     provide: DB_PROVIDER,
     useFactory: async () =>  {
         (mongoose as any).Promise = global.Promise;
-        return await mongoose.connect("mongodb://localhost:27017/parley")
+        return await mongoose.connect(`${process.env.DB_DRIVER}://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,{ useNewUrlParser: true });
     }
 }]
